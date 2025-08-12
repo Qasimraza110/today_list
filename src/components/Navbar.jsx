@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
-  return (
-<nav className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 text-white shadow-xl backdrop-blur-lg border-b border-blue-300/50">
+  const [isOpen, setIsOpen] = useState(false);
 
+  return (
+    <nav className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 text-white shadow-xl backdrop-blur-lg border-b border-blue-300/50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          
-          
+          {/* Logo */}
           <NavLink
             to="/"
             className="text-2xl font-extrabold tracking-wide hover:scale-105 transition-transform duration-200 drop-shadow-lg"
@@ -16,7 +16,7 @@ function Navbar() {
             🌟 Daily Task
           </NavLink>
 
-        
+          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 text-lg">
             <NavLink
               to="/"
@@ -44,9 +44,12 @@ function Navbar() {
             </NavLink>
           </div>
 
-    
+          {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button className="p-2 rounded-md hover:bg-purple-700 transition">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-md hover:bg-purple-700 transition"
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -63,6 +66,38 @@ function Navbar() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isOpen && (
+          <div className="md:hidden flex flex-col space-y-2 mt-2 pb-4 border-t border-blue-300/50">
+            <NavLink
+              to="/"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `block py-2 px-3 rounded transition-all duration-200 ${
+                  isActive
+                    ? "bg-yellow-300 text-black font-bold"
+                    : "hover:bg-blue-600"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/about"
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `block py-2 px-3 rounded transition-all duration-200 ${
+                  isActive
+                    ? "bg-yellow-300 text-black font-bold"
+                    : "hover:bg-blue-600"
+                }`
+              }
+            >
+              About
+            </NavLink>
+          </div>
+        )}
       </div>
     </nav>
   );
