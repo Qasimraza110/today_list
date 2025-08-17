@@ -8,7 +8,7 @@ function Navbar() {
     <nav className="bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 text-white shadow-xl backdrop-blur-lg border-b border-blue-300/50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+    
           <NavLink
             to="/"
             className="text-2xl font-extrabold tracking-wide hover:scale-105 transition-transform duration-200 drop-shadow-lg"
@@ -16,7 +16,7 @@ function Navbar() {
             🌟 Daily Task
           </NavLink>
 
-          {/* Desktop Menu */}
+      
           <div className="hidden md:flex space-x-6 text-lg">
             <NavLink
               to="/"
@@ -44,7 +44,6 @@ function Navbar() {
             </NavLink>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -104,3 +103,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
