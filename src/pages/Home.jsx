@@ -8,9 +8,8 @@ function Home() {
   const [todos, setTodos] = useState([]);
   const [showFinished, setShowFinished] = useState(true);
 
-  const API_URL = "http://localhost:3000";
+  const API_URL = "https://backend-production-9a2b.up.railway.app/";
 
- 
   const fetchTodos = async () => {
    
       const res = await fetch(API_URL);
@@ -75,49 +74,49 @@ function Home() {
     fetchTodos();
   };
 
-  return (
-    <div className="mx-auto my-10 max-w-2xl p-8 bg-gradient-to-br from-violet-200 to-purple-300 shadow-2xl rounded-3xl">
-      <h1 className="text-center text-3xl font-extrabold text-violet-900 mb-6">
+ return (
+    <div className="mx-auto my-4 sm:my-10 max-w-full sm:max-w-2xl p-2 sm:p-8 bg-gradient-to-br from-violet-200 to-purple-300 shadow-2xl rounded-3xl">
+      <h1 className="text-center text-2xl sm:text-3xl font-extrabold text-violet-900 mb-4 sm:mb-6">
         ✨ Daily Task - Manage Your Task
       </h1>
 
-      <div className="mb-8">
-        <h2 className="text-lg font-bold text-violet-800 mb-2">Add a Task</h2>
-        <div className="flex gap-3">
+      <div className="mb-6 sm:mb-8">
+        <h2 className="text-base sm:text-lg font-bold text-violet-800 mb-2">Add a Task</h2>
+        <div className="flex flex-col sm:flex-row gap-3">
           <input
             onChange={Change}
             value={todo}
             type="text"
             placeholder="Write your task..."
-            className="flex-1 rounded-full px-5 py-2 shadow-md focus:ring-2 focus:ring-violet-500 outline-none"
+            className="flex-1 rounded-full px-4 sm:px-5 py-2 shadow-md focus:ring-2 focus:ring-violet-500 outline-none text-sm sm:text-base"
           />
           <button
             onClick={Add}
             disabled={todo.length <= 3}
-            className="bg-violet-700 hover:bg-violet-900 disabled:bg-gray-400 px-5 py-2 text-white font-semibold rounded-full shadow-md transition"
+            className="bg-violet-700 hover:bg-violet-900 disabled:bg-gray-400 px-4 sm:px-5 py-2 text-white font-semibold rounded-full shadow-md transition text-sm sm:text-base mt-2 sm:mt-0"
           >
             Save
           </button>
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-3 sm:mb-4">
         <input type="checkbox" onChange={Finished} checked={showFinished} />
-        <span className="text-sm text-gray-700">Show Completed Tasks</span>
+        <span className="text-xs sm:text-sm text-gray-700">Show Completed Tasks</span>
       </div>
 
-      <h2 className="text-lg font-bold text-violet-800 mb-3">Your Task</h2>
-      <div className="space-y-4">
+      <h2 className="text-base sm:text-lg font-bold text-violet-800 mb-2 sm:mb-3">Your Task</h2>
+      <div className="space-y-3 sm:space-y-4">
         {todos.length === 0 && (
-          <p className="text-gray-500 text-center">No Todos to display 🎯</p>
+          <p className="text-gray-500 text-center text-sm sm:text-base">No Todos to display 🎯</p>
         )}
         {todos.map(item => {
           return (showFinished || !item.isCompleted) && (
             <div
               key={item.id}
-              className="flex justify-between items-center bg-white/70 backdrop-blur-lg rounded-lg shadow-md p-4 hover:scale-[1.02] transition-transform"
+              className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white/70 backdrop-blur-lg rounded-lg shadow-md p-3 sm:p-4 hover:scale-[1.02] transition-transform"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-0">
                 <input
                   name={item.id}
                   onChange={Checkbox}
@@ -125,7 +124,7 @@ function Home() {
                   checked={item.isCompleted}
                 />
                 <span
-                  className={`text-lg ${item.isCompleted ? "line-through text-gray-400" : "text-gray-800"}`}
+                  className={`text-base sm:text-lg ${item.isCompleted ? "line-through text-gray-400" : "text-gray-800"}`}
                 >
                   {item.todo}
                 </span>
@@ -138,13 +137,13 @@ function Home() {
               <div className="flex gap-2">
                 <button
                   onClick={(e) => Edit(e, item.id)}
-                  className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-full text-white shadow-md"
+                  className="bg-yellow-500 hover:bg-yellow-600 p-2 rounded-full text-white shadow-md text-base"
                 >
                   <FaEdit />
                 </button>
                 <button
                   onClick={(e) => Delete(e, item.id)}
-                  className="bg-red-500 hover:bg-red-700 p-2 rounded-full text-white shadow-md"
+                  className="bg-red-500 hover:bg-red-700 p-2 rounded-full text-white shadow-md text-base"
                 >
                   <AiFillDelete />
                 </button>
@@ -154,8 +153,7 @@ function Home() {
         })}
       </div>
     </div>
-  );
-}
+  )
+};
 
 export default Home;
-
