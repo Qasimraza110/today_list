@@ -10,7 +10,7 @@ function Home() {
 
   const API_URL = "http://localhost:3000";
 
-  // Fetch tasks from backend
+ 
   const fetchTodos = async () => {
    
       const res = await fetch(API_URL);
@@ -158,3 +158,4 @@ function Home() {
 }
 
 export default Home;
+
